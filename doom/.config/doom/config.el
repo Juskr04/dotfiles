@@ -211,3 +211,10 @@ in the ~/journal directory."
        "l" #'compile             ; Maps SPC d l to the 'compile' command
        "k" #'recompile           ; Maps SPC d k to the 'recompile' command
        ))
+
+(after! persp-mode
+  (map! :leader
+        :desc "Go to workspace 0" "TAB j" #'+workspace/switch-to-0
+        :desc "Go to workspace 1" "TAB k" #'+workspace/switch-to-1
+        :desc "Go to workspace 2" "TAB l" #'+workspace/switch-to-2
+        :desc "Go to workspace 3" "TAB ;" #'+workspace/switch-to-3))
