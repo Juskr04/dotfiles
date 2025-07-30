@@ -1,0 +1,268 @@
+" harpclone
+source ~/.vim/harpclone.vim
+
+syntax enable
+set cursorline
+set t_Co=256
+set number
+set relativenumber
+set guicursor=i:block
+let g:loaded_matchparen=1
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+set smartindent
+set ignorecase
+set smartcase
+set mouse=a
+set backspace=indent,eol,start
+set hidden
+set encoding=utf-8
+set wildmenu
+set showtabline=0
+set scrolloff=10
+set termguicolors
+set smartcase
+set nocompatible
+set noswapfile
+set incsearch
+set conceallevel=2
+set nowrap
+set showmatch
+set splitbelow
+set splitright
+set confirm 
+set undofile
+set undodir=~/garbage_collector
+set noswapfile       
+set nobackup         
+set nowritebackup
+filetype plugin indent on
+
+" Man Pages in vim
+" runtime! ftplugin/man.vim
+" nnoremap <silent> <leader>mp :Man <C-R><C-W><CR>
+
+let mapleader=" "
+let localleader= " "
+inoremap jj <Esc>
+nnoremap <leader>q q:i
+nnoremap 1p :bp<CR>
+nnoremap 1n :bn<CR>
+nnoremap <leader><leader> :e #<CR>
+nnoremap <F1> <Esc><Esc>
+cnoremap <F1> <Esc><Esc>
+vnoremap <F1> <Esc><Esc>
+inoremap <F1> <Esc><Esc>
+tnoremap <F1> <Esc><Esc>
+map s <Nop>
+nmap <S-k> <Nop>
+
+" Cursor postions to come back to 
+autocmd BufLeave * silent! call Record_cursorposn() 
+autocmd BufEnter * silent! call Restore_cursorposn()
+autocmd VimLeavePre * call Opt_save()
+
+call plug#begin()
+
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
+Plug 'drsooch/gruber-darker-vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'lervag/wiki.vim'
+Plug 'preservim/vim-markdown'
+Plug 'mcchrish/nnn.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'yegappan/lsp'
+Plug 'machakann/vim-highlightedyank'
+
+call plug#end()
+
+let lspOpts = #{autoHighlightDiags: v:false}
+autocmd User LspSetup call LspOptionsSet(lspOpts)
+
+let lspServers = [#{
+	\	  name: 'clang',
+	\	  filetype: ['c', 'cpp'],
+	\	  path: '/usr/bin/clangd',
+	\	  args: ['--background-index']
+	\ }]
+autocmd User LspSetup call LspAddServer(lspServers)
+
+nnoremap <silent> <leader>le  :LspDiag show<CR>
+nnoremap <silent> gd  		  :LspGotoDefinition<CR>
+nnoremap <silent> <leader>pd  :LspPeekDefinition<CR>
+nnoremap <silent> gr  		  :LspPeekReferences<CR>
+nnoremap <silent> <leader>lr  :LspRename<CR>
+nnoremap <silent> <leader>fi  :LspFormat<CR>
+
+let g:highlightedyank_highlight_duration = 100
+" terminal 
+nnoremap <leader>cl <C-w>w:q<CR>
+nnoremap <C-n> :lnext<CR>
+nnoremap <C-p> :lprev<CR>
+tnoremap <F2> <C-w>w
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+tnoremap <F10> <C-\><C-n>:hide<CR>
+nnoremap <F10> :sb !/bin/bash<CR>i
+
+" text manipulation 
+nnoremap <leader>da ggVGc
+nnoremap <leader>ca ggVG
+vnoremap <silent> <leader>y "+y
+vnoremap <leader>cl :.!tup<CR>
+vnoremap <leader>cf :.!fup<CR>
+
+" let g:gruvbox_contrast_light='hard'
+" colorscheme gruvbox
+" colorscheme PaperColor
+set background=dark
+colorscheme GruberDarker
+" makes it so that when you enable cursorline it doesn't show a weird
+" underscore on the number side 
+highlight CursorLineNr cterm=NONE gui=NONE
+
+" harpclone keybinds
+nnoremap <silent> <leader>e  :call SetBufferIndex()<CR>
+nnoremap <silent> <leader>hd :call Delete_buffer()<CR>
+nnoremap <silent> <leader>1 	 :silent! call LoadBuffer(0)<CR>
+nnoremap <silent> <leader>2 	 :silent! call LoadBuffer(1)<CR>
+nnoremap <silent> <leader>3 	 :silent! call LoadBuffer(2)<CR>
+nnoremap <silent> <leader>9 	 :silent! call LoadBuffer(3)<CR>
+nnoremap <silent> <leader>0 	 :silent! call LoadBuffer(4)<CR>
+nnoremap <silent> <leader>h0 :call ResetBufferIndex(0)<CR>
+nnoremap <silent> <leader>h1 :call ResetBufferIndex(1)<CR>
+nnoremap <silent> <leader>h2 :call ResetBufferIndex(2)<CR>
+nnoremap <silent> <leader>h3 :call ResetBufferIndex(3)<CR>
+nnoremap <silent> <leader>h4 :call ResetBufferIndex(4)<CR>
+nnoremap <silent> <leader>hl :call Load_session()<CR>
+
+" copy and paste to and form clipboard respectively
+" For Linux : vnoremap <silent> <leader>y "ay:call system('wl-copy', @a)<CR>
+
+" brackets autocompletion keybinds
+imap "<tab> ""<Left>
+imap '<tab> ''<Left>
+imap (<tab> ()<Left>
+imap [<tab> []<Left>
+imap {<tab> {}<Left>
+imap <<tab> <><Left>
+imap {<CR> {<CR>}<Esc>O
+imap `<tab> ```c```<Left><Left><Left><CR><CR><Up>
+
+" copy line with same cursor position
+function! YP_same_cursor_posn()
+	let cursor_posn_by = getpos('.')
+	let cursor_posn_by[1] = cursor_posn_by[1] + 1
+	execute "normal! yyp"
+	call setpos('.', cursor_posn_by)
+endfunction
+nnoremap <leader>. :call YP_same_cursor_posn()<CR>
+
+function! YP_same_cursor_posn_for_headers()
+	let cursor_posn_by = getpos('.')
+	let cursor_posn_by[1] = cursor_posn_by[1] + 1
+	execute "normal! yyp"
+	call setpos('.', cursor_posn_by)
+	execute "normal! di<a"
+	startinsert
+endfunction
+nnoremap <leader>h. :call YP_same_cursor_posn_for_headers()<CR>
+
+" Yank from specific line
+function! Specific_yank_above(destination)
+	let cursor_posn = getpos('.')
+	let line_num = line('.')
+	execute line_num."-".a:destination
+	execute "normal! yy"
+	call setpos('.', cursor_posn)
+endfunction
+nnoremap <leader>ya :call Specific_yank_above()<Left>
+
+function! Specific_yank_below(destination)
+	let cursor_posn = getpos('.')
+	let line_num = line('.')
+	execute line_num."+".a:destination
+	execute "normal! yy"
+	call setpos('.', cursor_posn)
+endfunction
+nnoremap <leader>yb :call Specific_yank_below()<Left>
+
+" make stuff 
+function! Make()
+	execute 'lcd %:p:h'
+	execute 'split | enew'
+	execute '.!make'
+	execute 'lcd -'
+endfunction
+nnoremap <leader>mw :call Make()<CR>
+
+" make stuff but stdin in required
+function! Make_stdin_required()
+    execute 'lcd %:p:h'
+    let stdin = input("stdin : ")
+    let cmd = "make"
+    let output =  systemlist(cmd, stdin) 
+    execute 'split | enew'
+    execute 'call setline("1", output)'
+	execute 'lcd -'
+endfunction
+nnoremap <leader>ms :call Make_stdin_required()<CR>
+
+" lsp format indentation fix
+vnoremap <leader>lf <gv>
+
+" specific files navigation
+nnoremap <leader>wv :e ~/.vim/vimrc<CR>
+nnoremap <leader>wt :e ~/.tmux.conf<CR>
+nnoremap <leader>wb :e ~/.bashrc<CR>
+nnoremap <leader>wb :e ~/.bashrc<CR>
+nnoremap <leader>wj :e ~/scratch/scratch.c<CR>
+nnoremap <leader>wk :e ~/scratch/scratch.txt<CR>
+
+let g:fzf_layout = { 'down': '100%' }
+nnoremap <leader>fk :lcd %:p:h<CR>:Files<CR>
+nnoremap <leader>fl :Files ~/learning<CR>
+nnoremap <leader>fn :Files ~/notes<CR>
+nnoremap <leader>fp :Files ~/projects<CR>
+" nnoremap <leader>f1 :Files ~/<CR>
+" nnoremap <leader>f2 :Files ~/<CR>
+nnoremap <leader>j :Buffers<CR>
+nnoremap <leader>sb :BLines<CR>
+nnoremap <leader>sl :Lines<CR>
+nnoremap <leader>sc :History:<CR>
+nnoremap <leader>s/ :History/<CR>
+nnoremap <leader>ss :lcd %:p:h<CR>:Rg<Space>
+nnoremap <leader>sn :lcd ~/notes<CR>:Rg<Space>
+nnoremap <leader>sp :lcd ~/projects<CR>:Rg<Space>
+
+let g:wiki_root = '~/notes'
+nnoremap <leader>we :WikiJournal<CR>
+
+" Vim fugitive plugins
+set conceallevel=2
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_fenced_languages = ['c=c']
+let g:vim_markdown_math = 1
+let g:vim_markdown_autowrite = 1
+let g:vim_markdown_borderless_table = 1
+
+" first one is git status(- to stage)
+nnoremap <leader>gm  :G<CR>3j<CR> 
+nnoremap <leader>gd  :G diff<CR>
+nnoremap <leader>gc  :G commit<CR>
+nnoremap <leader>gld :G log --oneline --graph --decorate --parents<CR>
+nnoremap <leader>gs  :G log --oneline<CR>
+
+" nnn file browser
+nnoremap <leader>n :NnnPicker<CR>
+

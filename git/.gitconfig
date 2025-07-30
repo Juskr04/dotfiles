@@ -1,0 +1,7 @@
+[user]
+	name = Juskr04
+	email = kushpavecha.imp@gmail.com
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /Users/juskr/.gitignore

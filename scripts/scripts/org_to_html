@@ -1,0 +1,16 @@
+#!/bin/bash
+
+for file in *.org; do
+    if [ -f "$file" ]; then # Check if it's a regular file
+        output_html="${file%.org}.html"
+        echo "Converting $file to $output_html using Pandoc..."
+        pandoc "$file" -f org -t html -o "$output_html"
+        if [ $? -eq 0 ]; then
+            echo "Successfully converted $output_html"
+        else
+            echo "Error converting $file"
+        fi
+    fi
+done
+
+echo "Batch Org to HTML conversion complete!"

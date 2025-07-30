@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for file in *.md; do
+  pandoc "$file" -f markdown -t org -o "${file%.md}.org"
+done

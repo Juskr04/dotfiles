@@ -1,0 +1,22 @@
+[window]
+padding.x = 10
+padding.y = 10
+option_as_alt = "OnlyLeft" 
+
+decorations = "none"
+opacity = 1.0
+blur = true
+
+[font]
+normal.family = "JetbrainsMono Nerd Font"
+size = 28
+
+[env]
+TERM = "xterm-256color"
+
+[terminal]
+
+[terminal.shell]
+program = "/bin/bash"
+args = [ "--login" ]
+
