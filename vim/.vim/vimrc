@@ -146,7 +146,7 @@ nnoremap <silent> <leader>h4 :call ResetBufferIndex(4)<CR>
 nnoremap <silent> <leader>hl :call Load_session()<CR>
 
 " copy and paste to and form clipboard respectively
-" For Linux : vnoremap <silent> <leader>y "ay:call system('wl-copy', @a)<CR>
+vnoremap <silent> <leader>y "ay:call system('wl-copy', @a)<CR>
 
 " brackets autocompletion keybinds
 imap "<tab> ""<Left>
