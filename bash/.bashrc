@@ -62,5 +62,5 @@ export UBSAN_OPTIONS=abort_on_error=1:halt_on_error=1
 
 bind -f /etc/inputrc
 
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
 
