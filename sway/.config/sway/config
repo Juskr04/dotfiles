@@ -66,6 +66,11 @@ input "type:touchpad" {
     natural_scroll enabled
 }
 
+input "type:mouse" {
+    accel_profile "flat"
+    pointer_accel 0
+}
+
 input "*" {
     repeat_delay 250
     repeat_rate 30

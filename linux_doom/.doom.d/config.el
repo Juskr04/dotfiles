@@ -150,21 +150,14 @@
   (custom-set-faces!
     '(org-block
       :inherit fixed-pitch
-      :background "#BBBBBB")
-;;
-;;    '(org-block-begin-line
-;;      :inherit (shadow fixed-pitch)
-;;      :background "#222222"
-;;      :foreground "#888888")
-;;    '(org-block-end-line
-;;      :inherit (shadow fixed-pitch)
-;;      :background "#222222"
-;;      :foreground "#888888")
-;;
+      :background "#2E2E2E"
+      :foreground "#A0A0A0")
+
     '(org-code
       :inherit fixed-pitch
-;;      :background "#303030"
-      :foreground "#4444FF")
+      :background "#2E2E2E"
+      :foreground "#C0C0C0")
+
     '(org-verbatim
       :inherit org-code)))
 

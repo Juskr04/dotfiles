@@ -47,6 +47,7 @@ filetype plugin indent on
 
 let mapleader=" "
 let localleader= " "
+nnoremap <Esc> :noh<CR>
 inoremap jj <Esc>
 nnoremap <leader>q q:i
 nnoremap 1p :bp<CR>
