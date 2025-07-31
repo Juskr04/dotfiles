@@ -16,3 +16,12 @@ fi
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 . "$HOME/.cargo/env"
+
+##
+# Your previous /Users/juskr/.bash_profile file was backed up as /Users/juskr/.bash_profile.macports-saved_2025-07-31_at_01:33:30
+##
+
+# MacPorts Installer addition on 2025-07-31_at_01:33:30: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+

@@ -218,3 +218,8 @@ in the ~/journal directory."
         :desc "Go to workspace 1" "TAB k" #'+workspace/switch-to-1
         :desc "Go to workspace 2" "TAB l" #'+workspace/switch-to-2
         :desc "Go to workspace 3" "TAB ;" #'+workspace/switch-to-3))
+
+(with-eval-after-load 'dirvish
+  (map! :leader
+        :map dirvish-mode-map
+        "mv" #'dirvish-move))

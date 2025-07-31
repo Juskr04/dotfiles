@@ -31,5 +31,6 @@ yabai -m rule --add app="^Tempo Launcher-Beta$" manage=off
 yabai -m rule --add app="^Epic Games Launcher$" manage=off
 yabai -m rule --add app="^Factorio$" manage=off
 yabai -m rule --add app="^The Bazaar$" manage=off
+yabai -m rule --add app="^ImHex$" manage=off
 
 
