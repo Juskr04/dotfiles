@@ -6,6 +6,10 @@
 font pango: JetBrainsMonoNF 10
 default_border pixel 4
 focus_follows_mouse no
+mouse_warping none
+
+output eDP-1 pos 0 0 res 1920x1200@60Hz
+output HDMI-A-1 pos 2561 0 res 2560x1440@120Hz
 
 ### Variables
 #
