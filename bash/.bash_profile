@@ -15,7 +15,7 @@ fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
 
 ##
 # Your previous /Users/juskr/.bash_profile file was backed up as /Users/juskr/.bash_profile.macports-saved_2025-07-31_at_01:33:30
