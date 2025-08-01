@@ -216,3 +216,6 @@ in the ~/journal directory."
   (map! :leader
         :map dirvish-mode-map
         "mv" #'dirvish-move))
+
+(after! dired
+  (map! :desc "execute shell command in dired mode" "s-l" #'shell-command))

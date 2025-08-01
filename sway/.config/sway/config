@@ -24,9 +24,9 @@ set $right l
 set $term foot
 set $browser google-chrome-stable
 set $emacs emacs
+
 # Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
+# Note: pass the final command to swaymsg so that the resulting window can be opened # on the original workspace that the command was run on.
 # Recommends: rofi-wayland
 # set $rofi_cmd rofi \
 #         -terminal '$term'
@@ -100,6 +100,9 @@ input "*" {
 
     bindsym $mod+u exec $emacs
 
+    for_window [app_id="Alacritty"] floating enable
+    bindsym $mod+Shift+b exec "swaymsg 'for_window [title=\"Alacritty\"] floating enable, move position center, resize set 800 600'; alacritty -e books"
+
     bindsym $mod+Shift+Left focus output left
     bindsym $mod+Shift+Right focus output right
     # Drag floating windows by holding down $mod and left mouse button.
@@ -107,6 +110,8 @@ input "*" {
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
+    # bindsym $mod+Shift+b exec "$term && swaymsg floating enable"
+
     floating_modifier $mod normal
 
     # Reload the configuration file
