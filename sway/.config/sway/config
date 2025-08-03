@@ -82,7 +82,7 @@ input "*" {
     bindsym $mod+t exec $term
     bindsym $mod+w exec $browser
     bindsym $mod+Shift+q kill
-    bindsym $mod+space exec $menu
+    bindsym $mod+slash exec $menu
     bindsym $mod+u exec $emacs
     for_window [app_id="Alacritty"] floating enable
     bindsym $mod+Shift+b exec "swaymsg 'for_window [title=\"Alacritty\"] floating enable, move position center, resize set 800 600'; alacritty -e books"
@@ -169,6 +169,13 @@ input "*" {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
+    # Cmus
+    bindsym $mod+period exec "cmus-remote -u"
+    bindsym $mod+plus exec  "cmus-remote -v +20%"
+    bindsym $mod+minus exec  "cmus-remote -v -20%"
+    bindsym $mod+semicolon exec  "cmus-remote -r"
+    bindsym $mod+apostrophe exec  "cmus-remote -n"
 #
 # Scratchpad:
 #
@@ -176,11 +183,11 @@ input "*" {
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+m move scratchpad
+    # bindsym $mod+Shift+m move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+m scratchpad show
+    # # Show the next scratchpad window or hide the focused scratchpad window.
+    # # If there are multiple scratchpad windows, this command cycles through them.
+    # bindsym $mod+m scratchpad show
 
 #
 # Resizing containers:
