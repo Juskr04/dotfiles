@@ -142,7 +142,7 @@
 
 (after! evil-escape
   (setq evil-escape-key-sequence "jj")
-  (setq evil-escape-delay 0.15))
+  (setq evil-escape-delay 0.5))
 
 (setq org-hide-emphasis-markers t)
 
@@ -219,3 +219,14 @@ in the ~/journal directory."
 
 (after! dired
   (map! :desc "execute shell command in dired mode" "s-l" #'shell-command))
+
+(map! :leader
+      :desc "lsp rename" "cr" #'clang-rename)
+
+(defun my/rg-compile ()
+  (interactive)
+  (let ((compile-command "rg --no-heading -rn "))
+    (call-interactively 'compile)))
+
+(map! :leader
+      "dg" #'my/rg-compile)

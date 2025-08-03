@@ -35,6 +35,7 @@ alias ytdlpsa='yt-dlp -x '
 alias ff='fastfetch'
 alias ghmd='gh markdown-preview'
 alias emacs='emacsclient -c'
+alias rgf='rg --no-heading -rn'
 # alias emacs='~/.config/emacs/bin/doom run'
 
 set -o vi

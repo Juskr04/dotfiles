@@ -14,7 +14,7 @@
     "modules-center": [
     ],
     "modules-right": [
-        //"idle_inhibitor",
+        "idle_inhibitor",
         "clock",
         "pulseaudio",
 		"tray", 

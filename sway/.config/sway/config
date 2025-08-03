@@ -22,8 +22,8 @@ set $right l
 # Your preferred terminal emulator
 # Recommends: foot
 set $term foot
-set $browser google-chrome-stable
-set $emacs emacs
+set $browser brave-browser-stable
+set $emacs "emacsclient -c -a vim"
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened # on the original workspace that the command was run on.
@@ -96,13 +96,13 @@ input "*" {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+space exec $menu
 
     bindsym $mod+u exec $emacs
 
     for_window [app_id="Alacritty"] floating enable
     bindsym $mod+Shift+b exec "swaymsg 'for_window [title=\"Alacritty\"] floating enable, move position center, resize set 800 600'; alacritty -e books"
-
+    
     bindsym $mod+Shift+Left focus output left
     bindsym $mod+Shift+Right focus output right
     # Drag floating windows by holding down $mod and left mouse button.
@@ -176,7 +176,7 @@ input "*" {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
+    bindsym $mod+Shift+v splith
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
@@ -191,7 +191,7 @@ input "*" {
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+Shift+t focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
