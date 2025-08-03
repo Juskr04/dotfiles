@@ -230,3 +230,16 @@ in the ~/journal directory."
 
 (map! :leader
       "dg" #'my/rg-compile)
+
+(after! whitespace
+  (add-hook 'c-mode-hook #'whitespace-mode))
+
+(use-package! whitespace
+  :config
+  (setq
+   whitespace-style '(face spaces space-mark tabs tab-mark newline newline-mark trailing)
+   whitespace-display-mappings
+   '(
+     (space-mark 32 [183] [46]) ; SPACE 32 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+     ))
+  )
