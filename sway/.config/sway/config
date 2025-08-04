@@ -5,6 +5,7 @@
 # Read `man 5 sway` for a complete reference.
 font pango: JetBrainsMonoNF 10
 default_border pixel 0
+default_floating_border pixel 5
 gaps outer 0
 gaps inner 0
 focus_follows_mouse no
@@ -176,6 +177,9 @@ input "*" {
     bindsym $mod+minus exec  "cmus-remote -v -20%"
     bindsym $mod+semicolon exec  "cmus-remote -r"
     bindsym $mod+apostrophe exec  "cmus-remote -n"
+
+    # Screenshots
+    bindsym $mod+F12 exec "grim ~/screenshots/$(date +'%Y%m%d-%H%M%S_grim.png')"
 #
 # Scratchpad:
 #
@@ -213,7 +217,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
+default_border normal
 bar {
     position bottom
     status_command while date +'%d-%m-%Y %I:%M:%S %p'; do sleep 1; done

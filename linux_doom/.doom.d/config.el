@@ -237,7 +237,7 @@ in the ~/journal directory."
 (use-package! whitespace
   :config
   (setq
-   whitespace-style '(face spaces space-mark tabs tab-mark newline newline-mark trailing)
+   whitespace-style '(spaces space-mark)
    whitespace-display-mappings
    '(
      (space-mark 32 [183] [46]) ; SPACE 32 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
