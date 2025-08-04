@@ -59,7 +59,9 @@
        :desc "Open dired in ~/notes"
        "n" (lambda () (interactive) (dired "~/notes/programming/"))
        :desc "Open dired in ~/projects"
-       "p" (lambda () (interactive) (dired "~/projects"))))
+       "p" (lambda () (interactive) (dired "~/projects"))
+       :desc "Open dired in ~/projects"
+       "r" (lambda () (interactive) (dired "~/probe/raylib/src"))))
 
 ;; You can use this hydra menu that have all the commands
 (map! :n "C-SPC" 'harpoon-quick-menu-hydra)
@@ -225,8 +227,9 @@ in the ~/journal directory."
 
 (defun my/rg-compile ()
   (interactive)
-  (let ((compile-command "rg --no-heading -rn "))
-    (call-interactively 'compile)))
+  (let* ((search-pattern (read-string "Search pattern for rg: " "")) ; Prompt for search pattern, default to empty
+         (compile-command (format "rg --no-heading -n \"%s\"" search-pattern))) ; Build the command
+    (compile compile-command)))
 
 (map! :leader
       "dg" #'my/rg-compile)
