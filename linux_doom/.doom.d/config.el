@@ -43,7 +43,9 @@
 (map! :leader
       (:prefix ("e" . "edit config files")
        :desc "Edit scratch.c"    "j" (lambda () (interactive) (find-file "~/scratch/scratch.c"))
-       :desc "Edit scratch.txt"  "k" (lambda () (interactive) (find-file "~/scratch/scratch.txt"))))
+       :desc "Edit scratch.txt"  "k" (lambda () (interactive) (find-file "~/scratch/scratch.txt"))
+       :desc "Edit scratch.txt"  "rl" (lambda () (interactive) (find-file "~/projects/utilsjuskr/include/raylib.h"))
+       :desc "Edit scratch.txt"  "rg" (lambda () (interactive) (find-file "~/projects/utilsjuskr/include/raygui.h"))))
 
 ;; seperate clipboards
 (setq select-enable-clipboard nil)
@@ -59,9 +61,13 @@
        :desc "Open dired in ~/notes"
        "n" (lambda () (interactive) (dired "~/notes/programming/"))
        :desc "Open dired in ~/projects"
-       "p" (lambda () (interactive) (dired "~/projects"))
+       "p" (lambda () (interactive) (dired "~/projects/"))
        :desc "Open dired in ~/projects"
-       "r" (lambda () (interactive) (dired "~/probe/raylib/src"))))
+       "1" (lambda () (interactive) (dired "~/probe/raylib/src"))
+       :desc "Open dired in ~/projects"
+       "2" (lambda () (interactive) (dired "~/probe/raylib/examples/"))
+       :desc "Open dired in ~/projects"
+       "3" (lambda () (interactive) (dired "~/probe/raygui/examples/"))))
 
 ;; You can use this hydra menu that have all the commands
 (map! :n "C-SPC" 'harpoon-quick-menu-hydra)
@@ -234,6 +240,15 @@ in the ~/journal directory."
 (map! :leader
       "dg" #'my/rg-compile)
 
+;; This function runs a shell command and inserts its output at point.
+(defun my/no-build ()
+  "Run `ls -a` and insert its output into the current buffer."
+  (interactive)
+  (insert (shell-command "cd .. ; clang -o nob nob.c ; ./nob ; ./build/main")))
+
+(map! :leader
+      "nb" #'my/no-build)
+
 (after! whitespace
   (add-hook 'c-mode-hook #'whitespace-mode))
 
@@ -246,3 +261,8 @@ in the ~/journal directory."
      (space-mark 32 [183] [46]) ; SPACE 32 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
      ))
   )
+
+(map! :leader
+     :desc "occur mode"
+     "oc" #'occur)
+
