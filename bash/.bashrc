@@ -56,6 +56,7 @@ export PATH="/Applications/MacPorts/iaito.app/Contents/MacOS:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
+
 # export MANPATH="/usr/share/man""
 
 export ASAN_OPTIONS=abort_on_error=1:halt_on_error=1

@@ -44,8 +44,13 @@
       (:prefix ("e" . "edit config files")
        :desc "Edit scratch.c"    "j" (lambda () (interactive) (find-file "~/scratch/scratch.c"))
        :desc "Edit scratch.txt"  "k" (lambda () (interactive) (find-file "~/scratch/scratch.txt"))
-       :desc "Edit scratch.txt"  "rl" (lambda () (interactive) (find-file "~/projects/utilsjuskr/include/raylib.h"))
-       :desc "Edit scratch.txt"  "rg" (lambda () (interactive) (find-file "~/projects/utilsjuskr/include/raygui.h"))))
+       :desc "Edit raylib.h"     "rl" (lambda () (interactive) (find-file "~/projects/utilsjuskr/include/raylib.h"))
+       :desc "Edit raygui.h"     "rg" (lambda () (interactive) (find-file "~/projects/utilsjuskr/include/raygui.h"))
+       :desc "Edit main.c"       "9" (lambda () (interactive) (find-file "~/projects/utilsjuskr/src/main.c"))))
+
+(map! :leader
+      (:prefix ("p" . "edit config files")
+       :desc "open utilsjuskr" "1" (lambda () (interactive) (find-file "~/projects/utilsjuskr/"))))
 
 ;; seperate clipboards
 (setq select-enable-clipboard nil)
@@ -240,14 +245,12 @@ in the ~/journal directory."
 (map! :leader
       "dg" #'my/rg-compile)
 
-;; This function runs a shell command and inserts its output at point.
-(defun my/no-build ()
-  "Run `ls -a` and insert its output into the current buffer."
+(defun my/nb-compile ()
   (interactive)
-  (insert (shell-command "cd .. ; clang -o nob nob.c ; ./nob ; ./build/main")))
+   (compile "cd .. ; clang -o nob nob.c ; cd build ; ./main"))
 
 (map! :leader
-      "nb" #'my/no-build)
+      "cn" #'my/nb-compile)
 
 (after! whitespace
   (add-hook 'c-mode-hook #'whitespace-mode))
