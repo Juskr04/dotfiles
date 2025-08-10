@@ -10,7 +10,7 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
-
+export TERM=xterm-256color
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
@@ -36,6 +36,7 @@ alias ff='fastfetch'
 alias ghmd='gh markdown-preview'
 alias emacs='emacsclient -c'
 alias rgf='rg --no-heading -rn'
+alias battery=' upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage'
 # alias emacs='~/.config/emacs/bin/doom run'
 
 set -o vi

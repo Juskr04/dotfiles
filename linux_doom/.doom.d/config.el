@@ -35,7 +35,6 @@
   (setq completion-category-overrides
         '((file (styles hotfuzz))))) ;; fuzzy file search
 
-(remove-hook 'doom-first-buffer-hook #'global-flycheck-mode)
 (setq evil-ex-search-highlight-all nil)
 (remove-hook 'dired-mode-hook #'diredfl-mode)
 (add-to-list 'default-frame-alist '(undecorated . t))
@@ -269,3 +268,6 @@ in the ~/journal directory."
      :desc "occur mode"
      "oc" #'occur)
 
+(map! :leader
+      :desc "global disable flycheck mode"
+      :"tf" #'global-flycheck-mode)
