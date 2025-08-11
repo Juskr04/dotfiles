@@ -63,7 +63,7 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 export ASAN_OPTIONS=abort_on_error=1:halt_on_error=1
 export UBSAN_OPTIONS=abort_on_error=1:halt_on_error=1
 
-bind -f /etc/inputrc
+bind -f ~/.local/share/omarchy/default/bash/inputrc
 
 #. "$HOME/.cargo/env"
 
