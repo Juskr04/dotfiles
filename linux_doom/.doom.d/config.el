@@ -3,6 +3,8 @@
 ;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'naysayer)
 (menu-bar-mode -1)
+(setq global-flycheck-mode 'nil)
+(remove-hook 'after-init-hook #'global-flycheck-mode)
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 30 :weight 'light))
 (setq display-line-numbers-type t)
 (setq org-directory "~/org/")
@@ -19,6 +21,12 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 (setq-default evil-shift-width 4)
+
+(setq lsp-c-server "clangd")
+(setq lsp-diagnostics-provider :none)
+
+;;(with-eval-after-load 'lsp-mode
+;;  (remove-hook 'after-init-hook #'global-flycheck-mode))
 
 (defun my/switch-to-next-window-and-close ()
   "Switch to next window and then close it."
@@ -148,9 +156,6 @@
   (setq harpoon-separate-by-branch nil)
   (setq harpoon-project-package nil)
   (setq harpoon-without-project-function #'+workspace-current-name))
-
-(after! corfu
-  (setq corfu-auto nil))
 
 (after! evil-escape
   (setq evil-escape-key-sequence "jj")

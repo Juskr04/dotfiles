@@ -6,7 +6,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
-vim.o.breakindent = true
+-- vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.cmdheight = 0
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
@@ -70,6 +70,7 @@ Plug ('ixru/nvim-markdown')
 Plug 'nvim-lualine/lualine.nvim'
 Plug ('justinmk/vim-dirvish')
 Plug ('MunifTanjim/nui.nvim')
+Plug ('ej-shafran/compile-mode.nvim')
 
 vim.call('plug#end')
 
@@ -165,13 +166,13 @@ vim.keymap.set("n", "gra", function() vim.lsp.buf.code_action() end)
 local harpoon = require("harpoon")
 harpoon:setup()
 
-vim.keymap.set("n", "<leader>e", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-s>", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>a", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
 vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
 vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<leader>9", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
 vim.keymap.set("n", "<leader>0", function() harpoon:list():select(5) end)
 
 -- Toggle previous & next buffers
@@ -190,7 +191,7 @@ vim.g.vim_markdown_math = 1
 vim.g.vim_markdown_toc_autofit = 1
 
 -- autopairs but not really 
-vim.keymap.set("i", '"<tab>', '""<Left>')
+vim.keymap.set("i", '"', '""<Left>')
 vim.keymap.set("i", "'<tab>", "''<Left>")
 vim.keymap.set("i", "(<tab>", "()<Left>")
 vim.keymap.set("i", "[<tab>", "[]<Left>")
@@ -239,7 +240,6 @@ end
 vim.keymap.set("n", "<leader>yb", ":lua Specific_yank_below()<Left>")
 
 -- terminal
-vim.keymap.set("n", '<leader>rl', "<cmd>e ~/.vim/vimrc<CR>")
 vim.keymap.set('t', '<C-n>', '<C-w>w')
 vim.keymap.set('n', '<leader>-', '<C-w>w')
 
