@@ -1,7 +1,7 @@
 @import "../omarchy/current/theme/waybar.css";
 
 * {
-  background-color: #000000;
+  background-color: #285271;
   color: #FFFFFF;
 
   border: none;
@@ -57,7 +57,7 @@ tooltip {
 
 /* Styling for the active (currently focused) workspace */
 #workspaces button.active {
-    background-color: #000000; /* Keep the background transparent */
+    background-color: #285271; /* Keep the background transparent */
     border: 1px solid #ffffff; /* This creates a 2px solid white border */
     color: #ffffff; /* Text color */
     padding: 0 5px; /* Adjust padding to give space between the number and the border */
