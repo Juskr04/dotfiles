@@ -1,4 +1,7 @@
-(setq doom-theme 'gruber-darker)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'fleury t)
+;;(setq doom-theme 'gruber-darker)
+;;(setq doom-theme 'fluery)
 ;; (setq doom-theme 'tango)
 ;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'naysayer)
@@ -101,7 +104,7 @@
 
 (defun my/duplicate_line ()
     (interactive)
-    (let ((column (- (point) (point-at-bol)))
+    (let ((column (- (point) (pos-bol)))
         (line (let ((s (thing-at-point 'line t)))
                 (if s (string-remove-suffix "\n" s) ""))))
     (move-end-of-line 1)
@@ -256,18 +259,18 @@ in the ~/journal directory."
 (map! :leader
       "cn" #'my/nb-compile)
 
-(after! whitespace
-  (add-hook 'c-mode-hook #'whitespace-mode))
-
-(use-package! whitespace
-  :config
-  (setq
-   whitespace-style '(spaces space-mark)
-   whitespace-display-mappings
-   '(
-     (space-mark 32 [183] [46]) ; SPACE 32 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-     ))
-  )
+;; (after! whitespace
+;;   (add-hook 'c-mode-hook #'whitespace-mode))
+;;
+;; (use-package! whitespace
+;;   :config
+;;   (setq
+;;    whitespace-style '(spaces space-mark)
+;;    whitespace-display-mappings
+;;    '(
+;;      (space-mark 32 [183] [46]) ; SPACE 32 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+;;      ))
+;;   )
 
 (map! :leader
      :desc "occur mode"

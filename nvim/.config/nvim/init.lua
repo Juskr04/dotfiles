@@ -6,9 +6,17 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
--- vim.o.breakindent = true
+vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.cmdheight = 0
+vim.g.neovide_position_animation_length = 0
+vim.g.neovide_cursor_animation_length = 0.00
+vim.g.neovide_cursor_trail_size = 0
+vim.g.neovide_cursor_animate_in_insert_mode = false
+vim.g.neovide_cursor_animate_command_line = false
+vim.g.neovide_scroll_animation_far_lines = 0
+vim.g.neovide_scroll_animation_length = 0.00
+
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -20,6 +28,7 @@ vim.o.updatetime = 350
 vim.o.timeoutlen = 400
 vim.o.splitright = true
 vim.o.splitbelow = true
+
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
 vim.o.cursorline = true
@@ -40,6 +49,7 @@ vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('n', '<F1>', '<Nop>')
 vim.keymap.set('n', 's', '<Nop>')
 
+-- vim.keymap.set('v', )
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -48,29 +58,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
-
 -- Plugins with vim-plug
 local vim = vim
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
-Plug ('mcchrish/nnn.vim')
+Plug ('drsooch/gruber-darker-vim')
 Plug ('tpope/vim-fugitive')
 Plug ('tpope/vim-surround')
 Plug ('lervag/wiki.vim')
-Plug 'drsooch/gruber-darker-vim'
-Plug ('folke/snacks.nvim')
 Plug ('nvim-treesitter/nvim-treesitter')
 Plug ('nvim-lua/plenary.nvim')
 Plug ('ThePrimeagen/harpoon', { ['branch'] = 'harpoon2' })
+Plug ('folke/snacks.nvim')
 Plug ('echasnovski/mini.completion')
-Plug ('rebelot/kanagawa.nvim')
 Plug ('ixru/nvim-markdown')
 Plug 'nvim-lualine/lualine.nvim'
-Plug ('justinmk/vim-dirvish')
-Plug ('MunifTanjim/nui.nvim')
 Plug ('ej-shafran/compile-mode.nvim')
+Plug ('mcchrish/nnn.vim')
 
 vim.call('plug#end')
 
@@ -79,7 +85,6 @@ vim.cmd('colorscheme GruberDarker')
 -- LSP
 vim.lsp.enable { 'clangd'}
 require('mini.completion').setup()
-
 -- statusline
 require('lualine').setup{
     options = {
@@ -95,8 +100,8 @@ require('snacks').setup({
 	bigfile = { enabled = true },
     dashboard = { enabled = false },
     explorer = { enabled = false },
-    indent = { enabled = true },
-    input = { enabled = true },
+    indent = { enabled = false },
+    input = { enabled = false },
     picker = { enabled = true },
     notifier = { enabled = false },
     quickfile = { enabled = true },
@@ -125,7 +130,7 @@ vim.keymap.set("n", "<leader>fj", function()
 end)
 
 vim.keymap.set("n", "<leader>fm", function() 
-    vim.ui.input({prompt = "Enter man page"}, function(input)
+    vim.ui.input({prompt = "Enter man page : "}, function(input)
         vim.cmd('split | enew')
         vim.cmd('read !man ' .. input .. ' | col -bx')
         vim.cmd('normal! gg')
@@ -153,7 +158,7 @@ vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end)
 vim.keymap.set("n", "<leader>sM", function() Snacks.picker.man() end)
 vim.keymap.set("n", "<leader>sc", function() Snacks.picker.command_history() end)
 vim.keymap.set("n", "<leader>s/", function() Snacks.picker.search_history() end)
--- lsp 
+-- sp 
 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
 vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end)
 vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end)
@@ -176,8 +181,8 @@ vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
 vim.keymap.set("n", "<leader>0", function() harpoon:list():select(5) end)
 
 -- Toggle previous & next buffers
-vim.keymap.set("n", "1n", "<cmd>bp<CR>")
-vim.keymap.set("n", "1p", "<cmd>bn<CR>")
+vim.keymap.set("n", "1p", "<cmd>bp<CR>")
+vim.keymap.set("n", "1n", "<cmd>bn<CR>")
 
 --random
 vim.keymap.set("n", "<leader>da", "ggVGc")
@@ -192,11 +197,11 @@ vim.g.vim_markdown_toc_autofit = 1
 
 -- autopairs but not really 
 vim.keymap.set("i", '"', '""<Left>')
-vim.keymap.set("i", "'<tab>", "''<Left>")
-vim.keymap.set("i", "(<tab>", "()<Left>")
-vim.keymap.set("i", "[<tab>", "[]<Left>")
-vim.keymap.set("i", "{<tab>", "{}<Left>")
-vim.keymap.set("i", "<<tab>", "<><Left>")
+vim.keymap.set("i", "'", "''<Left>")
+vim.keymap.set("i", "(", "()<Left>")
+vim.keymap.set("i", "[", "[]<Left>")
+vim.keymap.set("i", "{", "{}<Left>")
+vim.keymap.set("i", "<", "<><Left>")
 vim.keymap.set("i", "{<CR>", "{<CR>}<Esc>O")
 vim.keymap.set("i", "`<tab>", "```c```<Left><Left><Left><CR><CR><Up>")
 

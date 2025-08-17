@@ -42,8 +42,8 @@ set nowritebackup
 filetype plugin indent on
 
 " Man Pages in vim
-" runtime! ftplugin/man.vim
-" nnoremap <silent> <leader>mp :Man <C-R><C-W><CR>
+runtime! ftplugin/man.vim
+nnoremap <silent> <leader>mp :Man <C-R><C-W><CR>
 
 let mapleader=" "
 let localleader= " "
