@@ -24,6 +24,7 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 (setq-default evil-shift-width 4)
+(setq-default truncate-lines t)
 
 (setq interprogram-cut-function
       (lambda (text)
@@ -290,3 +291,5 @@ in the ~/journal directory."
 (map! :leader
       :desc "dired of current buffer"
       :"dd" #'dired-jump)
+
+(setq-default corfu-auto nil)
