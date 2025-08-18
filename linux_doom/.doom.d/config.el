@@ -25,6 +25,18 @@
 (setq-default indent-tabs-mode nil)
 (setq-default evil-shift-width 4)
 
+(setq interprogram-cut-function
+      (lambda (text)
+        (let ((process-connection-type nil))
+          (let ((proc (start-process "wl-copy" "*Messages*" "wl-copy" "-f")))
+            (process-send-string proc text)
+            (process-send-eof proc)))))
+
+(setq interprogram-paste-function
+      (lambda ()
+        (shell-command-to-string "wl-paste -n")))
+
+
 (setq lsp-c-server "clangd")
 (setq lsp-diagnostics-provider :none)
 
@@ -62,11 +74,7 @@
       (:prefix ("p" . "edit config files")
        :desc "open utilsjuskr" "1" (lambda () (interactive) (find-file "~/projects/utilsjuskr/"))))
 
-;; seperate clipboards
-(setq select-enable-clipboard nil)
-(setq select-enable-primary nil)
-(map! "S-C-c" #'clipboard-kill-ring-save)
-(map! "S-C-v" #'clipboard-yank)
+
 
 ;;;(setq select-enable-primary nil)
 (map! :leader
@@ -112,10 +120,9 @@
     (insert line)
     (move-beginning-of-line 1)
     (forward-char column)))
-
 (map! :leader
       :desc "Duplicate line below, keep cursor"
-      "["
+      "."
       #'my/duplicate_line)
 
 (defun my/yank-line-above (lines)
@@ -279,3 +286,7 @@ in the ~/journal directory."
 (map! :leader
       :desc "global disable flycheck mode"
       :"tf" #'global-flycheck-mode)
+
+(map! :leader
+      :desc "dired of current buffer"
+      :"dd" #'dired-jump)
