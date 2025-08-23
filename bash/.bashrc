@@ -64,6 +64,7 @@ export ASAN_OPTIONS=abort_on_error=1:halt_on_error=1
 export UBSAN_OPTIONS=abort_on_error=1:halt_on_error=1
 
 bind -f ~/.local/share/omarchy/default/bash/inputrc
+export XDG_RUNTIME_DIR=/run/user/1000
 
 #. "$HOME/.cargo/env"
 

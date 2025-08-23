@@ -6,9 +6,10 @@
 ;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'naysayer)
 (menu-bar-mode -1)
+(split-window-horizontally)
 (setq global-flycheck-mode 'nil)
 (remove-hook 'after-init-hook #'global-flycheck-mode)
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 30 :weight 'light))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 25 :weight 'light))
 (setq display-line-numbers-type t)
 (setq org-directory "~/org/")
 (setq display-line-numbers-type 'relative)
@@ -25,6 +26,8 @@
 (setq-default indent-tabs-mode nil)
 (setq-default evil-shift-width 4)
 (setq-default truncate-lines t)
+
+(set-face-background 'hl-line "#080740")
 
 (setq interprogram-cut-function
       (lambda (text)
@@ -249,7 +252,7 @@ in the ~/journal directory."
   (map! :desc "execute shell command in dired mode" "s-l" #'shell-command))
 
 (map! :leader
-      :desc "lsp rename" "cr" #'clang-rename)
+      :desc "lsp rename" "cr" #'lsp-rename)
 
 (defun my/rg-compile ()
   (interactive)
@@ -266,6 +269,13 @@ in the ~/journal directory."
 
 (map! :leader
       "cn" #'my/nb-compile)
+
+(defun my/build-project ()
+  (interactive)
+  (compile "cd .. ; ./build.sh"))
+
+(map! :leader
+      "cp" #'my/build-project)
 
 ;; (after! whitespace
 ;;   (add-hook 'c-mode-hook #'whitespace-mode))
@@ -293,3 +303,10 @@ in the ~/journal directory."
       :"dd" #'dired-jump)
 
 (setq-default corfu-auto nil)
+
+(after! hl-todo
+  (setq hl-todo-keyword-faces
+        '(("TODO" . "#FF0000") ; Set "TODO" to be red
+          ("FIXME" . "#FF0000")
+          ("NOTE" . "#32CD32")
+
