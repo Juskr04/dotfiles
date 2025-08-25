@@ -1,15 +1,16 @@
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'fleury t)
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;;(load-theme 'fleury t)
 ;;(setq doom-theme 'gruber-darker)
 ;;(setq doom-theme 'fluery)
 ;; (setq doom-theme 'tango)
 ;; (setq doom-theme 'doom-one)
-;; (setq doom-theme 'naysayer)
+(setq doom-theme 'naysayer)
 (menu-bar-mode -1)
 (split-window-horizontally)
 (setq global-flycheck-mode 'nil)
 (remove-hook 'after-init-hook #'global-flycheck-mode)
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 25 :weight 'light))
+;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 25 :weight 'light))
+(setq doom-font (font-spec :family "Iosevka" :size 28 :weight 'medium))
 (setq display-line-numbers-type t)
 (setq org-directory "~/org/")
 (setq display-line-numbers-type 'relative)
@@ -27,7 +28,8 @@
 (setq-default evil-shift-width 4)
 (setq-default truncate-lines t)
 
-(set-face-background 'hl-line "#080740")
+;;(custom-set-faces!
+;;  '(hl-line :background "#080740"))
 
 (setq interprogram-cut-function
       (lambda (text)
@@ -306,7 +308,13 @@ in the ~/journal directory."
 
 (after! hl-todo
   (setq hl-todo-keyword-faces
-        '(("TODO" . "#FF0000") ; Set "TODO" to be red
+        '(("TODO" . "#FF0000")
           ("FIXME" . "#FF0000")
-          ("NOTE" . "#32CD32")
+          ("NOTE" . "#EECC00"))))
 
+(map! :leader
+      :desc "delete all windows"
+      "ww" #'delete-other-windows-internal)
+;;(map! :desc "delete all windows" "C-j 2" #'split-window-below)
+;;(map! :desc "delete all windows" "C-j 3" #'split-window-right)
+;;(map! :desc "delete all windows" "C-j 4" #'delete-window)
