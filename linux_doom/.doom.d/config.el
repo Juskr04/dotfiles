@@ -7,8 +7,8 @@
 (setq doom-theme 'naysayer)
 (menu-bar-mode -1)
 (split-window-horizontally)
-(setq global-flycheck-mode 'nil)
-(remove-hook 'after-init-hook #'global-flycheck-mode)
+;;(setq global-flycheck-mode 'nil)
+;;(remove-hook 'after-init-hook #'global-flycheck-mode)
 ;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 25 :weight 'light))
 (setq doom-font (font-spec :family "Iosevka" :size 28 :weight 'medium))
 (setq display-line-numbers-type t)
@@ -26,7 +26,7 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 (setq-default evil-shift-width 4)
-(setq-default truncate-lines t)
+;;(setq-default truncate-lines t)
 
 ;;(custom-set-faces!
 ;;  '(hl-line :background "#080740"))
@@ -46,8 +46,17 @@
 (setq lsp-c-server "clangd")
 (setq lsp-diagnostics-provider :none)
 
-;;(with-eval-after-load 'lsp-mode
-;;  (remove-hook 'after-init-hook #'global-flycheck-mode))
+(add-hook 'after-init-hook
+          (lambda ()
+            (global-flycheck-mode -1)  ; Disable Flycheck globally
+            (dolist (mode-hook '(prog-mode-hook c-mode-hook))
+              (add-hook mode-hook (lambda () (flycheck-mode -1))))))
+
+(setq lsp-enable-symbol-highlighting nil)
+
+(use-package! corfu
+  :config
+  (global-corfu-mode -1))  ; Disable Corfu globally
 
 (defun my/switch-to-next-window-and-close ()
   "Switch to next window and then close it."
@@ -297,6 +306,10 @@ in the ~/journal directory."
      "oc" #'occur)
 
 (map! :leader
+      :desc "find file"
+      "fl" #'find-file)
+
+(map! :leader
       :desc "global disable flycheck mode"
       :"tf" #'global-flycheck-mode)
 
@@ -315,6 +328,16 @@ in the ~/journal directory."
 (map! :leader
       :desc "delete all windows"
       "ww" #'delete-other-windows-internal)
+(map! :leader
+      :desc "split window below"
+      "w3" #'split-window-below)
+(map! :leader
+      :desc "split window right"
+      "w2" #'split-window-right)
+(map! :leader
+      :desc "delete window"
+      "w4" #'delete-window)
+
 ;;(map! :desc "delete all windows" "C-j 2" #'split-window-below)
 ;;(map! :desc "delete all windows" "C-j 3" #'split-window-right)
 ;;(map! :desc "delete all windows" "C-j 4" #'delete-window)
