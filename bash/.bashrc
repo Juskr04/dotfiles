@@ -55,6 +55,7 @@ export PATH="/opt/homebrew/opt/starship:$PATH"
 export PATH="/opt/homebrew/opt/marksman/bin/marksman:$PATH"
 export PATH="/Applications/MacPorts/iaito.app/Contents/MacOS:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="$HOME/utils_i_use/emacs:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
 
