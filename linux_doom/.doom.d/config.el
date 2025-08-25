@@ -5,6 +5,7 @@
 ;; (setq doom-theme 'tango)
 ;; (setq doom-theme 'doom-one)
 (setq doom-theme 'naysayer)
+;; use this value(#445566) for selection in .emacs.d/.local/straight/repos/naysayer-theme.el/naysayer-theme.el
 (menu-bar-mode -1)
 (split-window-horizontally)
 ;;(setq global-flycheck-mode 'nil)
@@ -26,6 +27,8 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 (setq-default evil-shift-width 4)
+(global-visual-line-mode 1)
+
 ;;(setq-default truncate-lines t)
 
 ;;(custom-set-faces!
