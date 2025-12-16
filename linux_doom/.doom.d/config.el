@@ -1,20 +1,20 @@
 ;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 ;;(load-theme 'fleury t)
-;;(setq doom-theme 'gruber-darker)
+(setq doom-theme 'gruber-darker)
 ;;(setq doom-theme 'fluery)
 ;; (setq doom-theme 'tango)
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'naysayer)
+;;(setq doom-theme 'naysayer)
 ;; use this value(#445566) for selection in .emacs.d/.local/straight/repos/naysayer-theme.el/naysayer-theme.el
 (menu-bar-mode -1)
-(split-window-horizontally)
 ;;(setq global-flycheck-mode 'nil)
 ;;(remove-hook 'after-init-hook #'global-flycheck-mode)
 ;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 25 :weight 'light))
-(setq doom-font (font-spec :family "Iosevka" :size 28 :weight 'medium))
-(setq display-line-numbers-type t)
+(setq doom-font (font-spec :family "Iosevka" :size 31 :weight 'medium))
 (setq org-directory "~/org/")
-(setq display-line-numbers-type 'relative)
+;;(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type nil)
+
 (setq evil-normal-state-cursor 'box
       evil-insert-state-cursor 'box
       evil-visual-state-cursor 'box
@@ -70,6 +70,17 @@
 (map! :leader
       :desc "change window and kill it" "w d" #'my/switch-to-next-window-and-close)
 
+(after! doom-modeline
+  (setq doom-modeline-modal nil))
+
+(custom-set-faces
+;; Change the color of the modified buffer name
+'(doom-modeline-buffer-modified ((t (:foreground "black")))))
+
+;; Or, to remove the specific color for modified buffers and inherit
+;; the default buffer name color:
+;; '(doom-modeline-buffer-modified ((t (:inherit doom-modeline-buffer-file))))
+
 ;; fuzzy file search
 (after! vertico
   (add-to-list 'completion-styles 'hotfuzz)
@@ -77,7 +88,9 @@
         '((file (styles hotfuzz))))) ;; fuzzy file search
 
 (setq evil-ex-search-highlight-all nil)
+
 (remove-hook 'dired-mode-hook #'diredfl-mode)
+(remove-hook 'dired-mode-hook 'dired-omit-mode)
 (add-to-list 'default-frame-alist '(undecorated . t))
 
 (map! :leader
@@ -185,9 +198,9 @@
   (setq harpoon-project-package nil)
   (setq harpoon-without-project-function #'+workspace-current-name))
 
-(after! evil-escape
-  (setq evil-escape-key-sequence "jj")
-  (setq evil-escape-delay 0.5))
+;;(after! evil-escape
+;;  (setq evil-escape-key-sequence "jj")
+;;  (setq evil-escape-delay 0.5))
 
 (setq org-hide-emphasis-markers t)
 
@@ -262,9 +275,6 @@ in the ~/journal directory."
         :map dirvish-mode-map
         "mv" #'dirvish-move))
 
-(after! dired
-  (map! :desc "execute shell command in dired mode" "s-l" #'shell-command))
-
 (map! :leader
       :desc "lsp rename" "cr" #'lsp-rename)
 
@@ -324,19 +334,28 @@ in the ~/journal directory."
 
 (after! hl-todo
   (setq hl-todo-keyword-faces
-        '(("TODO" . "#FF0000")
+        '(("TODO" .  "#FF0000")
           ("FIXME" . "#FF0000")
-          ("NOTE" . "#EECC00"))))
+          ("NOTE" .  "#EECC00"))))
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (consult-buffer))
 
 (map! :leader
       :desc "delete all windows"
       "ww" #'delete-other-windows-internal)
+
 (map! :leader
       :desc "split window below"
       "w3" #'split-window-below)
+
 (map! :leader
       :desc "split window right"
       "w2" #'split-window-right)
+
 (map! :leader
       :desc "delete window"
       "w4" #'delete-window)
@@ -344,3 +363,22 @@ in the ~/journal directory."
 ;;(map! :desc "delete all windows" "C-j 2" #'split-window-below)
 ;;(map! :desc "delete all windows" "C-j 3" #'split-window-right)
 ;;(map! :desc "delete all windows" "C-j 4" #'delete-window)
+
+(map! :leader
+      :desc "leaving wdired mode"
+      "z" #'wdired-exit)
+
+(map! :leader
+      :desc "browse html files"
+      "de" #'browse-url-of-dired-file)
+
+(map! :desc "Switch to previous workspace"
+      "M-p" #'+workspace:switch-previous)
+
+(map! :desc "Execute shell command"
+      "M-S-l" #'shell-command)
+
+
+(map! :leader
+      :desc "create empty file in dired"
+      "dc" #'dired-create-empty-file)

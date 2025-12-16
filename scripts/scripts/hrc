@@ -1,0 +1,40 @@
+#!/usr/bin/tcc -run
+
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+uint8_t
+hex_numchar_to_int(char a)//converts a hexadecimal char like '8' or 'F' to integer, the character HAS TO BE A NUMBER
+{
+    if(a == 'A' | a == 'B' | a == 'C' | a == 'D' | a == 'E' | a == 'F')
+    {
+        return ((uint8_t)a - 55);
+    }
+    else
+    {
+        return ((uint8_t)a - 48);
+    }
+}
+
+void
+hex_to_rgb(char *hex, uint8_t *rgb)//assume 8 chars, no checking
+{
+    rgb[0] = (hex_numchar_to_int(*(hex + 0))*16) + (hex_numchar_to_int(*(hex + 1))*1); //hex[0,1] are 0x characters
+    rgb[1] = (hex_numchar_to_int(*(hex + 2))*16) + (hex_numchar_to_int(*(hex + 3))*1);
+    rgb[2] = (hex_numchar_to_int(*(hex + 4))*16) + (hex_numchar_to_int(*(hex + 5))*1);
+}
+
+int main(void)
+{
+    char hex[8];
+    uint8_t rgb[3];
+
+    uint8_t size_hex = sizeof(hex);
+    printf("enter hex(exactly 7 characters including # for safety) : ");
+    fgets(hex, size_hex, stdin);
+    hex[size_hex - 1] = '0';
+    hex_to_rgb(&hex[1], &rgb[0]);
+    printf("rgb : (%hhu, %hhu, %hhu)", rgb[0], rgb[1], rgb[2]);
+    return 0;
+}

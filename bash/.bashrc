@@ -57,6 +57,7 @@ export PATH="/Applications/MacPorts/iaito.app/Contents/MacOS:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 export PATH="$HOME/utils_i_use/emacs:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="/home/juskr/utils_i_use/tnoodle-cli-1.1.1-linux_x64/tnoodle-cli-linux_x64/bin/:$PATH"
 
 
 # export MANPATH="/usr/share/man""

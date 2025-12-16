@@ -1,6 +1,6 @@
 [window]
-padding.x = 10
-padding.y = 10
+padding.x = 0
+padding.y = 0
 option_as_alt = "OnlyLeft" 
 
 decorations = "none"
@@ -9,7 +9,7 @@ blur = true
 
 [font]
 normal.family = "Iosevka"
-normal.style = "Bold"
+normal.style = "Regular"
 #normal.family = "Iosevka-Regular"
 size = 25
 
@@ -23,5 +23,5 @@ program = "/bin/bash"
 args = [ "--login" ]
 
 [colors.primary]
-background = "#181818"
+background = "#000000"
 foreground = "#e4e4ef"

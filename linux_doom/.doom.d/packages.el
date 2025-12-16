@@ -52,3 +52,4 @@
 (package! hotfuzz)
 (package! harpoon)
 (package! naysayer-theme)
+(package! peep-dired)

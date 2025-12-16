@@ -4,8 +4,6 @@ source ~/.vim/harpclone.vim
 syntax enable
 set cursorline
 set t_Co=256
-set number
-set relativenumber
 set guicursor=i:block
 let g:loaded_matchparen=1
 set expandtab
@@ -80,7 +78,6 @@ Plug 'mcchrish/nnn.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'yegappan/lsp'
-Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
 
@@ -102,7 +99,6 @@ nnoremap <silent> gr  		  :LspPeekReferences<CR>
 nnoremap <silent> <leader>lr  :LspRename<CR>
 nnoremap <silent> <leader>fi  :LspFormat<CR>
 
-let g:highlightedyank_highlight_duration = 100
 " terminal 
 nnoremap <leader>cl <C-w>w:q<CR>
 nnoremap <C-n> :lnext<CR>
@@ -126,7 +122,7 @@ vnoremap <leader>cf :.!fup<CR>
 " colorscheme gruvbox
 " colorscheme PaperColor
 set background=dark
-colorscheme GruberDarker
+colorscheme retrobox
 " makes it so that when you enable cursorline it doesn't show a weird
 " underscore on the number side 
 highlight CursorLineNr cterm=NONE gui=NONE
