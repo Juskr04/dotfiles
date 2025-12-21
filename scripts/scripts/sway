@@ -1,0 +1,8 @@
+#!/bin/bash
+while true; do
+    date_formatted=$(date "+%d-%m-%Y %H:%M")
+    battery=$(cat /sys/class/power_supply/BAT0/capacity)
+    echo "$date_formatted | $battery%"
+    sleep 1
+done
+

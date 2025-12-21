@@ -1,5 +1,5 @@
 ;;(setq doom-theme 'gruber-darker)
-(setq doom-theme 'tango)
+(setq doom-theme 'doom-dark+)
 ;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'naysayer)
 (menu-bar-mode -1)

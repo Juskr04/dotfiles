@@ -1,0 +1,3 @@
+#!/bin/bash
+
+foot -W 150x12 -a foot_scripts_launcher -e sh -c 'find ~/scripts -type f -printf "%P\n" | fzf --layout=reverse > /tmp/fzf_output'

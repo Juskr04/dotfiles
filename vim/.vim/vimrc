@@ -15,7 +15,7 @@ set smartindent
 set ignorecase
 set smartcase
 set mouse=a
-set backspace=indent,eol,start
+" set backspace=indent,eol,start
 set hidden
 set encoding=utf-8
 set wildmenu
@@ -27,7 +27,7 @@ set nocompatible
 set noswapfile
 set incsearch
 set conceallevel=2
-set nowrap
+set wrap
 set showmatch
 set splitbelow
 set splitright
@@ -47,7 +47,8 @@ let mapleader=" "
 let localleader= " "
 nnoremap <Esc> :noh<CR>
 inoremap jj <Esc>
-nnoremap <leader>q q:i
+nnoremap <leader>q q:
+nnoremap <leader>bd :bd<CR>
 nnoremap 1p :bp<CR>
 nnoremap 1n :bn<CR>
 nnoremap <leader><leader> :e #<CR>
@@ -143,7 +144,8 @@ nnoremap <silent> <leader>h4 :call ResetBufferIndex(4)<CR>
 nnoremap <silent> <leader>hl :call Load_session()<CR>
 
 " copy and paste to and form clipboard respectively
-vnoremap <silent> <leader>y "ay:call system('wl-copy', @a)<CR>
+" vnoremap <silent> <leader>y "ay:call system('wl-copy', @a)<CR>
+vnoremap <leader>y "+y
 
 " brackets autocompletion keybinds
 imap "<tab> ""<Left>
@@ -152,7 +154,7 @@ imap (<tab> ()<Left>
 imap [<tab> []<Left>
 imap {<tab> {}<Left>
 imap <<tab> <><Left>
-imap {<CR> {<CR>}<Esc>O
+" imap {<CR> {}<Left><CR><CR><BS><Up><tab>
 imap `<tab> ```c```<Left><Left><Left><CR><CR><Up>
 
 " copy line with same cursor position
@@ -227,9 +229,7 @@ nnoremap <leader>wk :e ~/scratch/scratch.txt<CR>
 
 let g:fzf_layout = { 'down': '100%' }
 nnoremap <leader>fk :lcd %:p:h<CR>:Files<CR>
-nnoremap <leader>fl :Files ~/learning<CR>
-nnoremap <leader>fn :Files ~/notes<CR>
-nnoremap <leader>fp :Files ~/projects<CR>
+nnoremap <leader>fp :Files ~/programming/editor<CR>
 " nnoremap <leader>f1 :Files ~/<CR>
 " nnoremap <leader>f2 :Files ~/<CR>
 nnoremap <leader>j :Buffers<CR>

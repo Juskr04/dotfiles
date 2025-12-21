@@ -1,0 +1,6 @@
+$include /etc/inputrc
+set completion-ignore-case on
+$if mode=vi
+	set keymap vi-insert       
+    	"jj": vi-movement-mode     
+$endif

@@ -1,0 +1,19 @@
+#!/bin/sh
+# List all apps in a small floating terminal
+
+TERMINAL="foot"          # or foot / kitty
+WIDTH=80                      # columns
+HEIGHT=20                     # rows
+
+# Command to run in terminal
+CMD=$(cat <<'EOF'
+#!/bin/sh
+find /usr/share/applications -type f -name "*.desktop" | sort | \
+fzf --height 20 --reverse --ansi --prompt "Apps> " | \
+xargs -I{} sh -c 'exec $(grep -m1 "^Exec=" "{}" | sed "s/^Exec=//; s/ %.//")'
+EOF
+)
+
+# Launch terminal with command
+$TERMINAL -e sh -c "$CMD"
+

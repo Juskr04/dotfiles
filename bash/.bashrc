@@ -5,7 +5,7 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# User specific environment
+#User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
@@ -24,11 +24,13 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
+PS1='\u@\h:\w\$ '
+
 # Starship
-eval "$(starship init bash)"
+# eval "$(starship init bash)"
 
 alias n='nnn -deH'
-alias ll='ls -alF'
+alias ll='ls -alF --color=auto'
 alias ytdlpp='yt-dlp -o "%(playlist_index)s - %(title)s.%(ext)s" -x '
 alias ytdlpsv='yt-dlp -f 'bv*[height=1080]+ba' '
 alias ytdlpsa='yt-dlp -x '
@@ -50,23 +52,18 @@ export NNN_PLUG='f:fzopen;x:!chmod +x "$nnn";g:!git log;u:!unzip "$nnn";b:!nohup
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/starship:$PATH"
-export PATH="/opt/homebrew/opt/marksman/bin/marksman:$PATH"
-export PATH="/Applications/MacPorts/iaito.app/Contents/MacOS:$PATH"
-export PATH="$HOME/.config/emacs/bin:$PATH"
-export PATH="$HOME/utils_i_use/emacs:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
-export PATH="/home/juskr/utils_i_use/tnoodle-cli-1.1.1-linux_x64/tnoodle-cli-linux_x64/bin/:$PATH"
+export PATH="/usr/share/applications/:$PATH"
 
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib64/pkgconfig
 
 # export MANPATH="/usr/share/man""
 
 export ASAN_OPTIONS=abort_on_error=1:halt_on_error=1
 export UBSAN_OPTIONS=abort_on_error=1:halt_on_error=1
 
-bind -f ~/.local/share/omarchy/default/bash/inputrc
+bind -f /etc/inputrc
 export XDG_RUNTIME_DIR=/run/user/1000
 
+cd ~/programming/editor/
 #. "$HOME/.cargo/env"
 

@@ -10,10 +10,9 @@ gaps outer 0
 gaps inner 0
 focus_follows_mouse no
 
-output eDP-1 disable
+# output eDP-1 disable
 
 # Startup
-exec emacs_
 # Logo key. Use Mod1 for Alt.
 set $mod Mod1
 # Home row direction keys, like vim
@@ -24,8 +23,8 @@ set $right l
 # Your preferred terminal emulator
 # Recommends: foot
 set $term foot
-set $browser firefox
-set $emacs "emacsclient -c"
+set $browser chromium
+set $sound pavucontrol
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened # on the original workspace that the command was run on.
@@ -35,14 +34,13 @@ set $emacs "emacsclient -c"
 # Shows a combined list of the applications with desktop files and
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
-set $menu wofi --show run
+# set $menu walker
 # set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
-
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
-output * bg ~/Downloads/wallhaven-2852l6_2560x1440.png fill
+# output * bg ~/Downloads/wallhaven-2852l6_2560x1440.png fill
 #
 # Example configuration:
 #
@@ -83,10 +81,29 @@ input "*" {
     bindsym $mod+t exec $term
     bindsym $mod+w exec $browser
     bindsym $mod+Shift+q kill
-    bindsym $mod+slash exec $menu
-    bindsym $mod+u exec $emacs
-    for_window [app_id="Alacritty"] floating enable
-    bindsym $mod+Shift+b exec "swaymsg 'for_window [title=\"Alacritty\"] floating enable, move position center, resize set 800 600'; alacritty -e books"
+    bindsym $mod+p exec $sound
+
+#   bindsym $mod+d exec \
+#   --no-startup-id wmenu_path | wmenu -f "JetBrainsMonoNF 15" | wmenu | xargs swaymsg exec -- \
+#   find /usr/share/applications -type f -iname "*.desktop" -printf "%P\n" | wmenu -f "JetBrainsMonoNF 15" |  wmenu -l 15 | xargs -I{} zathura "$HOME/books/{}" \
+
+
+
+#   bindsym $mod+b exec \
+#   find ~/books -type f -iname "*.pdf" -printf "%P\n" | wmenu -l 15 | xargs -I{} zathura "$HOME/books/{}"
+
+#   bindsym $mod+b exec \
+#   find ~/books -type f -iname "*.pdf" -printf "%P\n" | wmenu -l 15 | xargs -I{} zathura "$HOME/books/{}"
+    
+
+    # for_window [instance="editor"] floating enable
+    # for_window [app_id="Alacritty"] floating enable
+    # bindsym $mod+Shift+b exec "swaymsg 'for_window [title=\"Alacritty\"] floating enable, move position center, resize set 800 600'; alacritty -e books"
+
+    for_window [app_id="foot_app_launcher"] border pixel 0, floating enable, move position 0 0
+
+    bindsym $mod+d exec ~/scripts/app_launcher
+
     bindsym $mod+Shift+Left focus output left
     bindsym $mod+Shift+Right focus output right
 
@@ -141,8 +158,6 @@ input "*" {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
 #
 # Layout stuff:
 #
@@ -163,20 +178,20 @@ input "*" {
     bindsym $mod+Shift+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+space floating toggle, resize set 800 800, move position 100 ppt 50 ppt, move left 800, move up 200
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+Shift+t focus mode_toggle
+    bindsym $mod+tab focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
 
     # Cmus
-    bindsym $mod+period exec "cmus-remote -u"
-    bindsym $mod+plus exec  "cmus-remote -v +20%"
-    bindsym $mod+minus exec  "cmus-remote -v -20%"
-    bindsym $mod+semicolon exec  "cmus-remote -r"
-    bindsym $mod+apostrophe exec  "cmus-remote -n"
+    # bindsym $mod+period exec "cmus-remote -u"
+    # bindsym $mod+plus exec  "cmus-remote -v +20%"
+    # bindsym $mod+minus exec  "cmus-remote -v -20%"
+    # bindsym $mod+semicolon exec  "cmus-remote -r"
+    # bindsym $mod+apostrophe exec  "cmus-remote -n"
 
     # Screenshots
     bindsym $mod+F12 exec "grim ~/screenshots/$(date +'%Y%m%d-%H%M%S_grim.png')"
@@ -220,7 +235,8 @@ bindsym $mod+r mode "resize"
 default_border normal
 bar {
     position bottom
-    status_command while date +'%d-%m-%Y %I:%M:%S %p'; do sleep 1; done
+    status_command ~/scripts/sway
+
     font pango:JetBrainsMonoNF 15
 
     colors {
