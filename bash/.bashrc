@@ -30,16 +30,15 @@ PS1='\u@\h:\w\$ '
 # eval "$(starship init bash)"
 
 alias n='nnn -deH'
+alias bld='./build.sh'
 alias ll='ls -alF --color=auto'
 alias ytdlpp='yt-dlp -o "%(playlist_index)s - %(title)s.%(ext)s" -x '
 alias ytdlpsv='yt-dlp -f 'bv*[height=1080]+ba' '
 alias ytdlpsa='yt-dlp -x '
 alias ff='fastfetch'
 alias ghmd='gh markdown-preview'
-#alias emacs='emacsclient -c'
-alias rgf='rg --no-heading -rn'
-alias battery=' upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage'
-# alias emacs='~/.config/emacs/bin/doom run'
+alias rgf='rg --no-heading -n'
+alias docs='fzf | xargs w3m'
 
 set -o vi
 

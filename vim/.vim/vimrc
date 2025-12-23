@@ -115,7 +115,7 @@ nnoremap <F10> :sb !/bin/bash<CR>i
 " text manipulation 
 nnoremap <leader>da ggVGc
 nnoremap <leader>ca ggVG
-vnoremap <silent> <leader>y "+y
+vnoremap <silent> <leader>Y V"+y
 vnoremap <leader>cl :.!tup<CR>
 vnoremap <leader>cf :.!fup<CR>
 
@@ -154,7 +154,7 @@ imap (<tab> ()<Left>
 imap [<tab> []<Left>
 imap {<tab> {}<Left>
 imap <<tab> <><Left>
-" imap {<CR> {}<Left><CR><CR><BS><Up><tab>
+imap {<CR> {<CR>}jjO
 imap `<tab> ```c```<Left><Left><Left><CR><CR><Up>
 
 " copy line with same cursor position
@@ -228,7 +228,7 @@ nnoremap <leader>wj :e ~/scratch/scratch.c<CR>
 nnoremap <leader>wk :e ~/scratch/scratch.txt<CR>
 
 let g:fzf_layout = { 'down': '100%' }
-nnoremap <leader>fk :lcd %:p:h<CR>:Files<CR>
+nnoremap <leader>fl :lcd %:p:h<CR>:Files<CR>
 nnoremap <leader>fp :Files ~/programming/editor<CR>
 " nnoremap <leader>f1 :Files ~/<CR>
 " nnoremap <leader>f2 :Files ~/<CR>

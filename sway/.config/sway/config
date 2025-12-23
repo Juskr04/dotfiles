@@ -25,6 +25,8 @@ set $right l
 set $term foot
 set $browser chromium
 set $sound pavucontrol
+set $debug "cd ~/programming/editor/build/ ; gf2"
+
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened # on the original workspace that the command was run on.
@@ -80,6 +82,8 @@ input "*" {
 }
     bindsym $mod+t exec $term
     bindsym $mod+w exec $browser
+    bindsym $mod+g exec $debug
+    bindsym $mod+e exec foot -e ~/scripts/tmux-sessionizer
     bindsym $mod+Shift+q kill
     bindsym $mod+p exec $sound
 
@@ -113,7 +117,7 @@ input "*" {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Moving around:
 
@@ -170,9 +174,9 @@ input "*" {
     # Switch the current container between different layout styles
     workspace_layout tabbed
 
-    bindsym $mod+s layout stacking
-    bindsym $mod+i layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+Shift+s layout stacking
+    bindsym $mod+Shift+i layout tabbed
+    bindsym $mod+Shift+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+Shift+f fullscreen

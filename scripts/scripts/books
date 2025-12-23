@@ -1,11 +1,3 @@
 #!/bin/bash
 
-SEARCH_DIR="$HOME/books"
-SELECTED_FILE=$(find -L "$SEARCH_DIR" -type f -iname "*.pdf" | fzf --layout=reverse)
-
-if [ -n "$SELECTED_FILE" ]; then
-    alacritty -e nohup zathura "$SELECTED_FILE" &
-    ALACRITTY_PID=$!
-    sleep 0.2
-    swaymsg "[pid=$ALACRITTY_PID] floating enable, move position center, resize set 800 600"
-fi
+foot -W 150x12 -a foot_app_launcher -e sh -c 'find ~/books -type f  -printf "%p\n" | fzf --layout=reverse | xargs zathura '
