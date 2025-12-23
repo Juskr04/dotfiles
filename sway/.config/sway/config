@@ -84,6 +84,7 @@ input "*" {
     bindsym $mod+w exec $browser
     bindsym $mod+g exec $debug
     bindsym $mod+e exec foot -e ~/scripts/tmux-sessionizer
+    bindsym $mod+c exec foot -e bc 
     bindsym $mod+Shift+q kill
     bindsym $mod+p exec $sound
 

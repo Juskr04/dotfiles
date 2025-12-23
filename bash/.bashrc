@@ -63,6 +63,5 @@ export UBSAN_OPTIONS=abort_on_error=1:halt_on_error=1
 bind -f /etc/inputrc
 export XDG_RUNTIME_DIR=/run/user/1000
 
-cd ~/programming/editor/
 #. "$HOME/.cargo/env"
 
