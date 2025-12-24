@@ -85,6 +85,7 @@ input "*" {
     bindsym $mod+g exec $debug
     bindsym $mod+e exec foot -e ~/scripts/tmux-sessionizer
     bindsym $mod+c exec foot -e bc 
+    bindsym $mod+v exec gvim 
     bindsym $mod+Shift+q kill
     bindsym $mod+p exec $sound
 
@@ -170,7 +171,7 @@ input "*" {
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
     bindsym $mod+Shift+v splith
-    bindsym $mod+v splitv
+    #bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
     workspace_layout tabbed

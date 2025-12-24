@@ -2,7 +2,6 @@
 source ~/.vim/harpclone.vim
 
 syntax enable
-set cursorline
 set t_Co=256
 set guicursor=i:block
 let g:loaded_matchparen=1
@@ -68,6 +67,7 @@ autocmd VimLeavePre * call Opt_save()
 call plug#begin()
 
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'p0209p/naysayer.vim'
 Plug 'morhetz/gruvbox'
 Plug 'drsooch/gruber-darker-vim'
 Plug 'junegunn/seoul256.vim'
@@ -122,11 +122,18 @@ vnoremap <leader>cf :.!fup<CR>
 " let g:gruvbox_contrast_light='hard'
 " colorscheme gruvbox
 " colorscheme PaperColor
-set background=dark
-colorscheme retrobox
-" makes it so that when you enable cursorline it doesn't show a weird
-" underscore on the number side 
-highlight CursorLineNr cterm=NONE gui=NONE
+
+" set background=dark
+" colorscheme naysayer
+" set cursorline
+" autocmd ColorScheme naysayer highlight CursorLine guibg=#103038 ctermbg=234
+" autocmd ColorScheme naysayer highlight Normal guifg=#d1b171 ctermfg=187
+colorscheme naysayer_alt
+" 1. Enable the line
+set cursorline
+highlight CursorLine guibg=#1a3d45 gui=none ctermbg=235
+highlight CursorLineNr guifg=#7ad164 gui=bold
+highlight CursorLine gui=none cterm=none
 
 " harpclone keybinds
 nnoremap <silent> <leader>e  :call SetBufferIndex()<CR>

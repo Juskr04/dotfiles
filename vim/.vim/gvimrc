@@ -1,0 +1,14 @@
+if has("gui_running")
+  set guioptions-=m
+  set guioptions-=T
+  set guioptions-=r
+  set guioptions-=L
+  
+  set guioptions+=c
+  set guifont=Iosevka\ 25
+endif
+
+if (&term =~ "256color" || &term =~ "xterm-256color") && has("termguicolors")
+    set termguicolors
+endif
+
