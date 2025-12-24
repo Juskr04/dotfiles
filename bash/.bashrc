@@ -45,6 +45,8 @@ set -o vi
 export EDITOR=vim
 export VISUAL=vim
 
+export LS_COLORS="di=01;32:ln=01;36:ex=01;32:pi=33:so=35:bd=33;01:cd=33;01:mi=01;31:or=01;31:ow=32;40"
+
 # bind 1-9 to specific projects in Bookmarks for better navigation if needed
 export NNN_BMS="d:~/.dotfiles;s:~/scripts;p:~/projects;b:~/books/coding;n:~/notes;e:~/notes/errors;l:~/learning"
 export NNN_PLUG='f:fzopen;x:!chmod +x "$nnn";g:!git log;u:!unzip "$nnn";b:!nohup zathura "$nnn" & exit;m:!gh markdown-preview "$nnn"'

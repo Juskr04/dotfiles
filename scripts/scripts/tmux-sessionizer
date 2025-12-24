@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/programming/editor/ ~/imp_utils/ ~/probe/ -maxdepth 1 -type d | fzf)
+    selected=$(find ~/programming/editor/ ~/programming/editor/wiki/ ~/imp_utils/ ~/probe/ -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
